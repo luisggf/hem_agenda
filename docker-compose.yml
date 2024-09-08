@@ -1,0 +1,16 @@
+version: "3.7"
+
+services:
+  postgres:
+    image: bitnami/postgresql:latest
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=hem_agenda_db
+    volumes:
+      - hem_agenda_pg_data:/bitnami/postgresql
+
+volumes:
+  hem_agenda_pg_data:

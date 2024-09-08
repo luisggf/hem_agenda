@@ -1,0 +1,89 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Doacoes {
+  id         Int      @id @default(autoincrement())
+  data       DateTime
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  // relacionamento e chaves estrangeiras
+
+  pessoa_id Int
+  local_id  Int
+  local     Locais_Coleta @relation(fields: [local_id], references: [id])
+  pessoa    Pessoas       @relation(fields: [pessoa_id], references: [id])
+}
+
+model Estados {
+  id         Int       @id @default(autoincrement())
+  nome       String
+  sigla      String
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+  cidade     Cidades[]
+}
+
+model Pessoas {
+  id          Int    @id @default(autoincrement())
+  nome        String
+  rua         String
+  numero      String
+  complemento String
+  rg          String
+
+  // relacionamento e chaves estrangeiras
+  tipo_id        Int
+  cidade_id      Int
+  Cidade         Cidades          @relation(fields: [cidade_id], references: [id])
+  tipo_sanguineo Tipos_Sanguineos @relation(fields: [tipo_id], references: [id])
+  doacoes        Doacoes[]
+}
+
+model Cidades {
+  id            Int             @id @default(autoincrement())
+  nome          String
+  created_at    DateTime        @default(now())
+  updated_at    DateTime        @updatedAt
+  estado_id     Int
+  locais_doacao Locais_Coleta[]
+  pessoa        Pessoas[]
+  estado        Estados         @relation(fields: [estado_id], references: [id])
+}
+
+model Locais_Coleta {
+  id          Int      @id @default(autoincrement())
+  nome        String
+  rua         String
+  numero      String
+  complemento String
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  // chaves estrangeiras e relacionamentos  
+  cidade_id Int
+
+  cidade       Cidades   @relation(fields: [cidade_id], references: [id])
+  local_doacao Doacoes[]
+}
+
+model Tipos_Sanguineos {
+  id         Int       @id @default(autoincrement())
+  tipo       String
+  fator      String
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+  pessoa     Pessoas[]
+}
