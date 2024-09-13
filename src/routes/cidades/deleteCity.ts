@@ -12,11 +12,11 @@ export async function deleteCity(app: FastifyInstance) {
     const { id } = paramsSchema.parse(request.params);
 
     try {
-      await prisma.cidades.delete({
+      const cityDeleted = await prisma.cidades.delete({
         where: { id: parseInt(id) },
       });
 
-      return reply.status(204).send();
+      return reply.status(204).send({ cityDeleted: { cityDeleted } });
     } catch (error) {
       return reply.status(500).send({ error: "Failed to delete cidade" });
     }

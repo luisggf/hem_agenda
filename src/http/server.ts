@@ -18,6 +18,18 @@ import { updateStateRoute } from "../routes/estados/updateStateById";
 import { registerPerson } from "../routes/pessoas/registerPerson";
 import { getPersonById } from "../routes/pessoas/getPersonById";
 import { updatePerson } from "../routes/pessoas/updatePerson";
+import { deletePersonRegister } from "../routes/pessoas/deletePerson";
+import { GetAllPersons } from "../routes/pessoas/getAllPersons";
+import { updateDonation } from "../routes/doacoes/updateDonation";
+import { createDonation } from "../routes/doacoes/createDonation";
+import { getDonationById } from "../routes/doacoes/getDonations";
+import { deleteDonation } from "../routes/doacoes/deleteDonation";
+import { getAllDonations } from "../routes/doacoes/getAllDonations";
+import { createDonationLocal } from "../routes/locais_doacao/createDonateLocal";
+import { getDonationLocalById } from "../routes/locais_doacao/getDonateLocal";
+import { updateDonationLocal } from "../routes/locais_doacao/updateDonateLocal";
+import { deleteDonationLocal } from "../routes/locais_doacao/deleteDonateLocal";
+import { GetAllDonationsLocal } from "../routes/locais_doacao/getAllDonateLocal";
 
 const server = fastify();
 
@@ -50,7 +62,24 @@ server.register(updateStateRoute);
 server.register(registerPerson);
 server.register(getPersonById);
 server.register(updatePerson);
+server.register(deletePersonRegister);
+server.register(GetAllPersons);
+
+// doacao
+server.register(createDonation);
+server.register(getDonationById);
+server.register(updateDonation);
+server.register(deleteDonation);
+server.register(getAllDonations);
+
+// locais coleta
+server.register(createDonationLocal);
+server.register(getDonationLocalById);
+server.register(updateDonationLocal);
+server.register(deleteDonationLocal);
+server.register(GetAllDonationsLocal);
 
 server.listen({ port: 3333 }).then(() => {
   console.log("server running");
 });
+("");

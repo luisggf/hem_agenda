@@ -34,6 +34,8 @@ export async function registerPerson(application: FastifyInstance) {
         },
       },
     });
-    return reply.status(201).send({ NewPersonRegister: { NewPerson } });
+    return reply.status(201).send({ Person_Created: { NewPerson } });
+
+    2;
   });
 }

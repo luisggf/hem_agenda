@@ -11,11 +11,11 @@ export async function deleteStateRoute(app: FastifyInstance) {
     const { id } = paramsSchema.parse(request.params);
 
     try {
-      await prisma.estados.delete({
+      const deletedState = await prisma.estados.delete({
         where: { id: parseInt(id) },
       });
 
-      return reply.status(204).send();
+      return reply.status(204).send({ deletedState });
     } catch (error) {
       return reply.status(500).send({ error: "Failed to delete estado" });
     }
