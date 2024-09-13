@@ -1,26 +1,3 @@
-# CSI606 - Sistemas WEB I - SI-06
-
-## Período Letivo 2024/1
-
-### _Prof. Fernando Bernardes de Oliveira, Ph.D._
-
----
-
-## **Atividades Práticas**
-
-### Instruções/regras
-
-1. As atividades são **INDIVIDUAIS**.
-
-1. Em caso de caracterização de cópia entre pessoas e/ou da internet (sem a devida referência), **TODOS** os envolvidos terão **nota zero** (0). Códigos utilizados por pessoas de outros semestres também causam a eliminação da atividade.
-
-1. **Entrega:**
-
-   - **GitHub**: código-fonte e afins. Insira os arquivos criados nas pastas conforme a entrega no seu repositório no GitHub.  
-      = **Atividades/atividade-pratica/sever**  
-      = **Atividades/atividade-pratica/web**
-   - As datas para as entregas estão disponíveis no Moodle.
-
 ## Desenvolvimento: Sistema de Agendamento de Doação de Sangue
 
 O objetivo deste sistema é controlar o processo de agendamento de doação de sangue numa determina instituição. O diagrama do banco de dados completo é apresentado na [figura abaixo](./database-model/db_model.png). Você também pode acessar o modelo definido a partir do [DBDiagram](https://dbdiagram.io/d/CSI606-sistema-doacao-sangue-630d077e0911f91ba5ecf743).
