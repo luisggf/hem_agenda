@@ -1,31 +1,16 @@
-## Desenvolvimento: Sistema de Agendamento de Doação de Sangue
-
-O objetivo deste sistema é controlar o processo de agendamento de doação de sangue numa determina instituição. O diagrama do banco de dados completo é apresentado na [figura abaixo](./database-model/db_model.png). Você também pode acessar o modelo definido a partir do [DBDiagram](https://dbdiagram.io/d/CSI606-sistema-doacao-sangue-630d077e0911f91ba5ecf743).
-
-![Diagrama completo do banco de dados](./database-model/CSI606-sistema-doacao-sangue.png)
-
----
-
 # Hem Agenda Backend
 
 O objetivo deste sistema é controlar o processo de agendamento de doação de sangue numa determina instituição. O diagrama do banco de dados completo é apresentado na [figura abaixo](./database-model/CSI606-sistema-doacao-sangue.png). Você também pode acessar o modelo definido a partir do [DBDiagram](https://dbdiagram.io/d/CSI606-sistema-doacao-sangue-630d077e0911f91ba5ecf743).
 
-![Diagrama completo do banco de dados](./database-model/CSI606-sistema-doacao-sangue.png)
+![Diagrama completo do banco de dados](./database-model/db_model.png)
 
-Aqui está o conteúdo formatado corretamente em Markdown para um arquivo `README.md`:
 
-````md
 ## Conceitos Usados Neste Projeto
 
-- REST API
 - Docker
 - PostgreSQL
-- Redis
 - Fastify
 - Prisma
-- Cookies
-- WebSockets
-- Pub/Sub
 
 ## Bibliotecas e Comandos Usados Para Fundar o Projeto
 
@@ -99,7 +84,7 @@ npm install
 Crie um arquivo `.env` no diretório raiz com o seguinte conteúdo (mantive meus arquivos locais .env e .yml neste repositório, mas você pode alterá-los para seus próprios). Exemplo:
 
 ```env
-DATABASE_URL="postgresql://usuario:senha@localhost:5432/polls?schema=public"
+DATABASE_URL="postgresql://usuario:senha@localhost:5432/hem_agenda_db?schema=public"
 ```
 
 ## Configuração do Docker
