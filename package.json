@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch src/http/server.ts"
+    "dev": "tsx watch src/http/server.ts",
+    "seed": "ts-node --transpile-only prisma/seeds/seedMain.ts"
+
   },
   "author": "",
   "license": "ISC",
@@ -13,6 +15,7 @@
     "@prisma/client": "^5.19.1",
     "express": "^4.19.2",
     "fastify": "^4.28.1",
+    "node-fetch": "^3.3.2",
     "zod": "^3.23.8"
   },
   "devDependencies": {
