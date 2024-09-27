@@ -8,10 +8,10 @@ export async function createDonationLocal(app: FastifyInstance) {
       nome: z.string(),
       rua: z.string(),
       numero: z.string(),
-      compl: z.string(),
+      complemento: z.string(),
       cidade_id: z.number(),
     });
-    const { nome, rua, numero, compl, cidade_id } = donationBody.parse(
+    const { nome, rua, numero, complemento, cidade_id } = donationBody.parse(
       req.body
     );
     try {
@@ -20,7 +20,7 @@ export async function createDonationLocal(app: FastifyInstance) {
           nome: nome,
           rua: rua,
           numero: numero,
-          complemento: compl,
+          complemento: complemento,
           created_at: new Date(),
           updated_at: new Date(),
           cidade: {

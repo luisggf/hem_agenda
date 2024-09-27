@@ -30,6 +30,7 @@ import { getDonationLocalById } from "../routes/locais_doacao/getDonateLocal";
 import { updateDonationLocal } from "../routes/locais_doacao/updateDonateLocal";
 import { deleteDonationLocal } from "../routes/locais_doacao/deleteDonateLocal";
 import { GetAllDonationsLocal } from "../routes/locais_doacao/getAllDonateLocal";
+import { personDonations } from "../routes/doacoes/getDonationsByPersonId";
 
 const server = fastify();
 
@@ -71,6 +72,7 @@ server.register(getDonationById);
 server.register(updateDonation);
 server.register(deleteDonation);
 server.register(getAllDonations);
+server.register(personDonations);
 
 // locais coleta
 server.register(createDonationLocal);

@@ -13,9 +13,10 @@ export async function registerPerson(application: FastifyInstance) {
       tipo_sanguineo_id: z.number(),
       cidade_id: z.number(),
     });
-
     const { nome, rg, rua, numero, complemento, tipo_sanguineo_id, cidade_id } =
       personRegister.parse(request.body);
+
+    console.log(nome, cidade_id);
 
     const NewPerson = await prisma.pessoas.create({
       data: {
@@ -25,7 +26,9 @@ export async function registerPerson(application: FastifyInstance) {
         numero: numero,
         complemento: complemento,
         tipo_sanguineo: {
-          connect: { id: tipo_sanguineo_id },
+          connect: {
+            id: tipo_sanguineo_id,
+          },
         },
         Cidade: {
           connect: {
@@ -35,7 +38,5 @@ export async function registerPerson(application: FastifyInstance) {
       },
     });
     return reply.status(201).send({ Person_Created: { NewPerson } });
-
-    2;
   });
 }

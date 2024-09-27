@@ -96,11 +96,32 @@ async function seedCidades() {
   }
 }
 
+async function seedTiposSanguineos() {
+  const bloodTypes = [
+    { tipo: "A", fator: "+A" },
+    { tipo: "A", fator: "-A" },
+    { tipo: "B", fator: "+B" },
+    { tipo: "B", fator: "-B" },
+    { tipo: "AB", fator: "+AB" },
+    { tipo: "AB", fator: "-AB" },
+    { tipo: "O", fator: "+O" },
+    { tipo: "O", fator: "-O" },
+  ];
+
+  // Use createMany to insert all the blood types at once
+  const tipos_sanguineos = await prisma.tipos_Sanguineos.createMany({
+    data: bloodTypes,
+    skipDuplicates: true, // Optional: Skips insertion if a record already exists
+  });
+
+  console.log(`${tipos_sanguineos.count} blood types seeded.`);
+}
+
 async function seed() {
+  await seedTiposSanguineos();
   await seedEstados();
   await seedCidades();
 }
-
 seed().then(() => {
   console.log("Seeding completed.");
 });
