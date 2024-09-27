@@ -1,7 +1,7 @@
 import { prisma } from "../../src/lib/prisma";
 import { z } from "zod";
 
-// definindo schemas pelo Zod
+// Definindo schemas pelo Zod
 const createEstadoSchema = z.object({
   nome: z.string(),
   sigla: z.string().length(2),
@@ -12,6 +12,7 @@ const createCidadeSchema = z.object({
   estado_id: z.number(),
 });
 
+// Função para semear estados
 async function seedEstados() {
   try {
     const estadosResponse = await fetch(
@@ -47,6 +48,7 @@ async function seedEstados() {
   }
 }
 
+// Função para semear cidades
 async function seedCidades() {
   try {
     const estados = await prisma.estados.findMany();
@@ -96,6 +98,7 @@ async function seedCidades() {
   }
 }
 
+// Função para semear tipos sanguíneos
 async function seedTiposSanguineos() {
   const bloodTypes = [
     { tipo: "A", fator: "+A" },
@@ -117,11 +120,93 @@ async function seedTiposSanguineos() {
   console.log(`${tipos_sanguineos.count} blood types seeded.`);
 }
 
+// Função para semear locais de coleta
+async function seedDonationLocations() {
+  const donationLocations = [
+    {
+      nome: "Vila Maciel",
+      rua: "Avenida Gury Marques",
+      numero: "5684",
+      complemento: "Predio Azul",
+      cidade_id: 54,
+    },
+    {
+      nome: "Parque Maracanã",
+      rua: "Rua das Flores",
+      numero: "123",
+      complemento: "Próximo ao parque",
+      cidade_id: 86,
+    },
+    {
+      nome: "Xangri-Lá",
+      rua: "Avenida Brasil",
+      numero: "456",
+      complemento: "Centro",
+      cidade_id: 907,
+    },
+    {
+      nome: "Helena Santana Pereira",
+      rua: "Rua da Liberdade",
+      numero: "789",
+      complemento: "Ao lado da escola",
+      cidade_id: 68,
+    },
+    {
+      nome: "Tabapuá Brasília II (Jurema)",
+      rua: "Rua da Paz",
+      numero: "101",
+      complemento: "Em frente à igreja",
+      cidade_id: 48,
+    },
+    {
+      nome: "Travessa Olívia",
+      rua: "Avenida das Américas",
+      numero: "202",
+      complemento: "No shopping",
+      cidade_id: 501,
+    },
+    {
+      nome: "Residencial Sunflower",
+      rua: "Rua do Comércio",
+      numero: "303",
+      complemento: "Centro comercial",
+      cidade_id: 1002,
+    },
+    {
+      nome: "Olavo Correia de Amorim",
+      rua: "Rua do Trabalho",
+      numero: "404",
+      complemento: "Próximo à rodoviária",
+      cidade_id: 923,
+    },
+    {
+      nome: "Lucilo Simões de Souza",
+      rua: "Avenida do Sol",
+      numero: "505",
+      complemento: "Esquina com Rua das Árvores",
+      cidade_id: 666,
+    },
+  ];
+
+  await Promise.all(
+    donationLocations.map(async (location) => {
+      return prisma.locais_Coleta.create({
+        data: location,
+      });
+    })
+  );
+
+  console.log("Donation locations seeded successfully.");
+}
+
+// Função principal para executar o seeding
 async function seed() {
   await seedTiposSanguineos();
   await seedEstados();
   await seedCidades();
+  await seedDonationLocations(); // Add this line to seed donation locations
 }
+
 seed().then(() => {
   console.log("Seeding completed.");
 });
